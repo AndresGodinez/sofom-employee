@@ -29,9 +29,6 @@ export default {
       router.go(-1);
     }
   },
-  computed() {
-  },
-  components: {}
 }
 </script>
 
