@@ -2,11 +2,21 @@
   <v-container>
     <v-row class="full" style="height: 100vh">
       <v-col sm="12" cols="12" align-self="center">
-        <h1 class="white--text fare">Billete</h1>
+        <v-img
+            max-height="300"
+            max-width="300"
+            height="300"
+            width="300"
+            class="mx-auto"
+            :src="require('../assets/billete.png')"
+        ></v-img>
       </v-col>
       <v-col cols="12" sm="12" align-self="end">
         <p class="white--text loan">
-          Tu préstamo rápido, fácil y seguro.
+          Tu préstamo
+        </p>
+        <p class="white--text loan">
+          rápido, fácil y seguro.
         </p>
       </v-col>
       <v-col cols="12" sm="12" align-self="end">
