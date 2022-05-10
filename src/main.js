@@ -8,9 +8,22 @@ import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import axios from "axios";
 import VueAxios from 'vue-axios'
+import VueSweetalert2 from 'vue-sweetalert2';
+import VModal from 'vue-js-modal'
+
+
 
 Vue.config.productionTip = false;
 Vue.use(VueAxios, axios)
+
+const optionsSweetAlert = {
+  confirmButtonColor: '#41b882',
+  cancelButtonColor: '#ff7674',
+};
+
+Vue.use(VueSweetalert2, optionsSweetAlert);
+Vue.use(VModal);
+
 
 new Vue({
   router,

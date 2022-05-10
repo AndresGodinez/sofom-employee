@@ -68,6 +68,7 @@
 import HeaderTop from './partials/header-top.vue'
 import RegisterText from './partials/register-text.vue'
 import {CONFIG} from "@/Settings/config";
+import NotificationUtils from "@/Utils/NotificationUtils";
 
 export default {
   name: 'Register',
@@ -97,19 +98,22 @@ export default {
   }),
   methods: {
     async verifyIfExistEmployee() {
-      console.log('verifyIfExistEmployee')
       const url = `${CONFIG.URL_API}/no-auth/exists-employee`;
 
       try {
         let response = await this.axios.post(url, {
           key_company: this.key_company,
-          payroll_number: this.pay_roll_number,
+          pay_roll_number: this.pay_roll_number,
           rfc: this.rfc
         })
-        console.log({response})
-
+        if (response.status === 200) {
+          await this.$store.dispatch('setEmployee', response.data.employee);
+          await this.$router.push({name: 'areYou'})
+        } else {
+          NotificationUtils.error(response.data.message)
+        }
       } catch (e) {
-        console.log(e)
+        await NotificationUtils.error("Los datos no coinciden con ningún empleado");
       }
     },
     validateForm() {

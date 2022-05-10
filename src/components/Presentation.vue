@@ -10,7 +10,8 @@
         </p>
       </v-col>
       <v-col cols="12" sm="12" align-self="end">
-        <v-btn  block color="primary" :to="{name:'register'}">Registrarme</v-btn>
+        <v-btn block color="primary" :to="{name:'register'}">Registrarme</v-btn>
+        <v-btn block color="secondary" :to="{name:'login'}" class="mt-3">Ya tengo cuenta</v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -26,6 +27,7 @@ export default {
 .full {
   background-color: black;
 }
+
 .loan {
   color: white;
   font-size: 1.5rem;
@@ -39,6 +41,7 @@ export default {
   font-weight: bold;
   color: #fff;
 }
+
 .fare {
   color: #fff;
   font-size: 2.5rem;
