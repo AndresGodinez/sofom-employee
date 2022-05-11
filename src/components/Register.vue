@@ -75,8 +75,8 @@ export default {
   data: () => ({
     valid: false,
     key_company: '21848392',
-    pay_roll_number: '217',
-    rfc: 'YardleyRFC',
+    pay_roll_number: '492',
+    rfc: 'asdf123456',
     //Rules
     key_companyRules: [
       v => !!v || 'ID Empresa es requerido',

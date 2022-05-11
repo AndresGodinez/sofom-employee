@@ -15,7 +15,7 @@
           Recuerda que tu usuario es tu <span style="font-weight: bold">número de nómina.</span>
         </p>
         <v-col cols="12" sm="12" class="d-flex justify-center">
-          <v-btn color="primary" :to="{name:'register'}" >Aceptar</v-btn>
+          <v-btn color="primary" :to="{name:'welcomeEmployee'}" >Aceptar</v-btn>
         </v-col>
       </v-col>
 

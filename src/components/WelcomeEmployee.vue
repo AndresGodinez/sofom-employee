@@ -14,7 +14,7 @@
             Aún no has solicitado un préstamo. Cuando lo hagas, aquí aparecerá su información.
           </p>
           <v-col cols="12" sm="12" class="d-flex justify-center">
-            <v-btn color="primary" :to="{name:'register'}">
+            <v-btn color="primary" :to="{name:'login'}">
               <v-icon color="primary" size="13">insert_drive_file</v-icon>
               Solicitar préstamo
             </v-btn>
