@@ -3,6 +3,12 @@
     <v-card>
       <v-list-item class="bg-black">
         <v-list-item-content class="bg-black">
+
+          <v-list-item-title class="bb" @click="goTo('requestLoanApplication')">
+            <v-icon color="white">request_page</v-icon>
+            Solicitar Préstamo
+
+          </v-list-item-title>
           <v-list-item-title class="bb" @click="goTo('historyLoans')">
             <v-icon color="white">history</v-icon>
             Historial de préstamos
@@ -23,10 +29,9 @@
             Cerrar sesión
           </v-list-item-title>
         </v-list-item-content>
+
       </v-list-item>
     </v-card>
-
-
   </v-row>
 </template>
 
