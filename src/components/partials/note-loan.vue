@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <b-card class="col-md-12">
+    <b-card class="col-md-12 mb-2">
       <b-card-header>
         <b-card-title>
           <h4>Tasa fija de %</h4>

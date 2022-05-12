@@ -63,36 +63,46 @@
       </b-row>
     </b-container>
 
-    <NoteLoan></NoteLoan>
-
+    <NoteLoan class="mb-4"></NoteLoan>
+    <b-container>
+      <b-card>
+        <b-card-header>
+          <b-card-title>
+            {{ accept }}
+          </b-card-title>
+        </b-card-header>
+      </b-card>
+    </b-container>
     <b-container>
       <b-row>
-        <b-form-checkbox
-            id="checkbox-1"
-            v-model="accept"
-            name="checkbox-1"
-            value="accepted"
-            unchecked-value="not_accepted"
-        >
-          He leído y acepto todos los términos y condiciones.
-        </b-form-checkbox>
+        <b-card>
+          <b-card-body>
+            <b-form-checkbox
+                id="checkbox-1"
+                v-model="accept"
+                name="checkbox-1"
+                value="accepted"
+                unchecked-value="not_accepted"
+            >
+              He leído y acepto todos los términos y condiciones.
+            </b-form-checkbox>
+          </b-card-body>
+        </b-card>
       </b-row>
     </b-container>
 
-    <b-row v-if="accept==='accepted' && !!selectedAvailableDeadline">
-      <b-card class="col-md-12">
-        <b-container>
-          <b-row>
-            <b-col class="col-md-12">
-              <b-button type="submit" variant="primary" size="lg" block class="col-md-12"
-                        @click="goToResumeLoanApplication">
-                <span class="text-w">Solicitar</span>
-              </b-button>
-            </b-col>
-          </b-row>
-        </b-container>
-      </b-card>
-    </b-row>
+    <b-container v-if="accept==='accepted' && !!selectedAvailableDeadline">
+      <b-row>
+        <b-card class="col-sm-12">
+          <b-card-body>
+            <b-button type="submit" block variant="primary" size="lg"
+                      @click="goToResumeLoanApplication">
+              <span class="text-w">Solicitar</span>
+            </b-button>
+          </b-card-body>
+        </b-card>
+      </b-row>
+    </b-container>
   </div>
 </template>
 <script>
@@ -135,17 +145,6 @@ export default {
   },
   mounted() {
     this.getMaxValue();
-  },
-  async created() {
-    let token = this.$store.getters.getToken;
-    if (token === '') {
-      await this.$router.push({
-        name: 'login',
-
-      });
-    }
-
-    this.axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
   },
   methods: {
     async getMaxValue() {
@@ -193,7 +192,18 @@ export default {
   components: {
     NoteLoan,
     TextLoanApplication
-  }
+  },
+  created() {
+    let token = this.$store.getters.getToken;
+    if (token === '') {
+      this.$router.push({
+        name: 'login',
+
+      });
+    }
+
+    this.axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+  },
 }
 </script>
 <style>
