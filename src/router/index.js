@@ -12,6 +12,7 @@ import RequestLoanApplicationView from '@/views/RequestLoanApplicationView.vue'
 import ListPendingLoanApplicationsView from '@/views/ListPendingLoanApplicationsView.vue'
 import MyLoansView from '@/views/MyLoansView.vue'
 import AmortizationTableView from '@/views/AmortizationTableView.vue'
+import HistoryLoansView from '@/views/HistoryLoansView.vue'
 
 Vue.use(VueRouter)
 
@@ -75,6 +76,11 @@ const routes = [
         path: '/my-loans',
         name: 'myLoans',
         component: MyLoansView
+    },
+    {
+        path: '/history-loans',
+        name: 'historyLoans',
+        component: HistoryLoansView
     }
 ]
 

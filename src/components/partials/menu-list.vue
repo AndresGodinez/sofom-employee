@@ -3,7 +3,7 @@
     <v-card>
       <v-list-item class="bg-black">
         <v-list-item-content class="bg-black">
-          <v-list-item-title class="bb">
+          <v-list-item-title class="bb" @click="goToHistoryLoans">
             <v-icon color="white">history</v-icon>
             Historial de préstamos
           </v-list-item-title>
@@ -32,7 +32,12 @@
 
 <script>
 export default {
-  name: "menu-list"
+  name: "menu-list",
+  methods: {
+    goToHistoryLoans() {
+      this.$router.push({ name: "historyLoans" });
+    }
+  }
 }
 </script>
 

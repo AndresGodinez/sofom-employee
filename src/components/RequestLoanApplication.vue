@@ -1,80 +1,72 @@
 <template>
   <div>
-    <b-card>
-      {{ selectedAvailableDeadline }}
-    </b-card>
-    <b-card>
-      <b-card-header>
-        <b-container>
-          <b-card-title>
-            Solicitud de Préstamo
-          </b-card-title>
-          <b-card-sub-title>
-            Llena toda la información correspondiente.
-          </b-card-sub-title>
-        </b-container>
-      </b-card-header>
-      <b-card-body>
-        <b-row v-if="maxValue">
-          <b-container class="pt-2">
-            <b-card-sub-title class="text-center">
-              <h6>Monto del préstamo</h6>
+    <b-container>
+      <b-row>
+        <b-card>
+          <TextLoanApplication></TextLoanApplication>
+          <b-card-body class="mt-3">
+            <b-row v-if="maxValue">
+              <b-container class="pt-2">
+                <b-card-sub-title class="text-center">
+                  <h6>Monto del préstamo</h6>
+                </b-card-sub-title>
+                <b-card-sub-title class="text-center">
+                  $ {{ requestedAmount }}
+                </b-card-sub-title>
+                <b-card-text>
+                  <b-form-input id="range" name="range" v-model="requestedAmount" type="range" min="0"
+                                :max="maxValue"></b-form-input>
+                </b-card-text>
+                <b-card-sub-title class="text-center">
+                  Monto Máximo {{ maxValue | currency }}
+                </b-card-sub-title>
+              </b-container>
+            </b-row>
+          </b-card-body>
+        </b-card>
+        <b-card-body class="col-md-12">
+          <b-container class="col-md-12">
+            <b-card-sub-title class="font-weight-bold py-3">
+              Seleccione el plazo del préstamo
             </b-card-sub-title>
-            <b-card-sub-title class="text-center">
-              $ {{ requestedAmount }}
-            </b-card-sub-title>
-            <b-card-text>
-              <b-form-input id="range" name="range" v-model="requestedAmount" type="range" min="0"
-                            :max="maxValue"></b-form-input>
-            </b-card-text>
-            <b-card-sub-title class="text-center">
-              Monto Máximo {{ maxValue | currency }}
-            </b-card-sub-title>
+            <b-form-row class="col-md-12">
+              <b-form-group label="Plazos disponibles" v-slot="{ row }" class="col-md-12">
+                <b-form-radio-group
+                    v-model="selectedAvailableDeadline"
+                    stacked
+                    class="col-md-12"
+                >
+                  <template v-for="option in options" class="col-md-12">
+                    <b-form-radio :value="option.value" :key="option.text" class="">
+                      <b-card class="col-md-12 pt-1">
+                        <b-card-body class="col-md-12">
+                          <b-row class="col-md-12">
+                            <b-card-sub-title class="d-flex justify-content-between col-md-12">
+                              <div class="col-md-8">
+                                {{ option.text }}
+
+                              </div>
+                              <div class="col-md-4">
+                                ${{ option.value.amount_to_pay }}
+                              </div>
+                            </b-card-sub-title>
+                          </b-row>
+                        </b-card-body>
+                      </b-card>
+                    </b-form-radio>
+                  </template>
+                </b-form-radio-group>
+              </b-form-group>
+            </b-form-row>
           </b-container>
-        </b-row>
-      </b-card-body>
-      <b-card-body class="col-md-12">
-        <b-container class="col-md-12">
-          <b-card-sub-title class="font-weight-bold py-3">
-            Seleccione el plazo del préstamo
-          </b-card-sub-title>
-          <b-form-row class="col-md-12">
-            <b-form-group label="Plazos disponibles" v-slot="{ row }" class="col-md-12">
-              <b-form-radio-group
-                  v-model="selectedAvailableDeadline"
-                  stacked
-                  class="col-md-12"
-              >
-                <template v-for="option in options" class="col-md-12">
-                  <b-form-radio :value="option.value" :key="option.text" class="">
-                    <b-card class="col-md-12 pt-1">
-                      <b-card-body class="col-md-12">
-                        <b-row class="col-md-12">
-                          <b-card-sub-title class="d-flex justify-content-between col-md-12">
-                            <div class="col-md-8">
-                              {{ option.text }}
-
-                            </div>
-                            <div class="col-md-4">
-                              ${{ option.value.amount_to_pay }}
-                            </div>
-                          </b-card-sub-title>
-                        </b-row>
-                      </b-card-body>
-                    </b-card>
-                  </b-form-radio>
-                </template>
-              </b-form-radio-group>
-            </b-form-group>
-          </b-form-row>
-        </b-container>
-      </b-card-body>
-
-    </b-card>
+        </b-card-body>
+      </b-row>
+    </b-container>
 
     <NoteLoan></NoteLoan>
-    <b-row class="col-md-12">
-      <b-container class="col-md-12">
+
+    <b-container>
+      <b-row>
         <b-form-checkbox
             id="checkbox-1"
             v-model="accept"
@@ -84,8 +76,9 @@
         >
           He leído y acepto todos los términos y condiciones.
         </b-form-checkbox>
-      </b-container>
-    </b-row>
+      </b-row>
+    </b-container>
+
     <b-row v-if="accept==='accepted' && !!selectedAvailableDeadline">
       <b-card class="col-md-12">
         <b-container>
@@ -108,6 +101,10 @@ import {BootstrapVue, IconsPlugin} from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueCurrencyFilter from 'vue-currency-filter'
+import NoteLoan from './partials/note-loan.vue';
+import {CONFIG} from "@/Settings/config";
+import ResumeLoanApplicationRequest from "./LoansApplications/Modals/resume-loan-application-request.vue";
+import TextLoanApplication from './partials/loanApplications/title-request-loan-application.vue'
 
 
 // Make BootstrapVue available throughout your project
@@ -125,9 +122,6 @@ Vue.use(VueCurrencyFilter,
       symbolSpacing: true
     });
 
-import NoteLoan from './partials/note-loan.vue';
-import {CONFIG} from "@/Settings/config";
-import ResumeLoanApplicationRequest from "./LoansApplications/Modals/resume-loan-application-request.vue";
 
 export default {
   data() {
@@ -197,7 +191,8 @@ export default {
     }
   },
   components: {
-    NoteLoan
+    NoteLoan,
+    TextLoanApplication
   }
 }
 </script>
