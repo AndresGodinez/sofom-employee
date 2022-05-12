@@ -1,4 +1,4 @@
-import {SET_EMPLOYEE, SET_LOAN_APPLICATION, SET_TOKEN, SET_USER} from "@/store/mutations-types";
+import {LOGOUT, SET_EMPLOYEE, SET_LOAN_APPLICATION, SET_TOKEN, SET_USER} from "@/store/mutations-types";
 
 export default {
     [SET_USER](state, user) {
@@ -12,5 +12,8 @@ export default {
     },
     [SET_LOAN_APPLICATION](state, loanApplication) {
         state.appModel.setLoanApplication(loanApplication);
+    },
+    [LOGOUT](state) {
+        state.appModel.logout();
     },
 }

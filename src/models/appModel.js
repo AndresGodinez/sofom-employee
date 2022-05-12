@@ -71,4 +71,8 @@ export default class AppModel {
     getBank() {
         return this.bank
     }
+
+    logout() {
+        this.token = ''
+    }
 }
