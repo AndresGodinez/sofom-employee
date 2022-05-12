@@ -64,15 +64,7 @@
     </b-container>
 
     <NoteLoan class="mb-4"></NoteLoan>
-    <b-container>
-      <b-card>
-        <b-card-header>
-          <b-card-title>
-            {{ accept }}
-          </b-card-title>
-        </b-card-header>
-      </b-card>
-    </b-container>
+
     <b-container>
       <b-row>
         <b-card>

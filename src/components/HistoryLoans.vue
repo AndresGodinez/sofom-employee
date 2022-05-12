@@ -1,7 +1,7 @@
 <template>
   <div>
     <HeaderTopUser></HeaderTopUser>
-    <ListLoansApplications :status="status"></ListLoansApplications>
+    <ListLoansApplications :status="status" :emptyMessage="emptyMessage"></ListLoansApplications>
   </div>
 </template>
 <script>
@@ -12,7 +12,8 @@ export default {
   name: 'ListPendingLoanApplications',
   data() {
     return {
-      status: 'closed'
+      status: 'closed',
+      emptyMessage: 'Aún no cuentas con un historico de préstamos.'
     }
   },
   created() {
