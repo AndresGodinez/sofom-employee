@@ -78,7 +78,7 @@ export default {
     //Rules
     passwordRules: [
       v => !!v || 'Contraseña requerida',
-      v => v.length > 6 || 'La contraseña debe de tener minimo 6 caracteres',
+      v => v.length >= 6 || 'La contraseña debe de tener minimo 6 caracteres',
     ],
     confirmPasswordRules: [v => !!v || "Password is required"],
 

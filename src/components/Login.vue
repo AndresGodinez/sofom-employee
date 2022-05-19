@@ -31,6 +31,7 @@
 
             <v-text-field
                 v-model="password"
+                type="password"
                 :rules="[v => !!v || 'Contaseña requerida']"
                 required
                 prepend-inner-icon="lock_outline"
