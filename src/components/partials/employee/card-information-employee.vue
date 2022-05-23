@@ -5,8 +5,7 @@
         <v-card>
           <v-col sm="12">
             <v-card-title>
-              Alberto Ramos Sanchez
-
+              {{ employeeName }}
             </v-card-title>
           </v-col>
           <v-col cols="12" sm="12">
@@ -31,7 +30,7 @@
         <v-btn color="primary" block @click="checkIfUserCanCheckPassword">Si, continuar</v-btn>
       </v-col>
       <v-col cols="12" sm="12" class="py-2">
-        <v-btn color="disabled" block>No soy yo</v-btn>
+        <v-btn color="disabled" block @click="sendToRegister">No soy yo</v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -82,9 +81,17 @@ export default {
         }
       }
     },
-
-
-  }
+    async sendToRegister() {
+      await this.$router.push({
+        name: 'register',
+      });
+    },
+  },
+  computed: {
+    employeeName() {
+      return this.$store.getters.getEmployee.name;
+    }
+  },
 }
 </script>
 <style scoped>

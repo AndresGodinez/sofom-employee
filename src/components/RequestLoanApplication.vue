@@ -11,7 +11,7 @@
                   <h6>Monto del préstamo</h6>
                 </b-card-sub-title>
                 <b-card-sub-title class="text-center">
-                  $ {{ requestedAmount }}
+                   {{ requestedAmount | currency }}
                 </b-card-sub-title>
                 <b-card-text>
                   <b-form-input id="range" name="range" v-model="requestedAmount" type="range" min="0"
@@ -44,10 +44,20 @@
                             <b-card-sub-title class="d-flex justify-content-between col-md-12">
                               <div class="col-md-8">
                                 {{ option.text }}
-
                               </div>
                               <div class="col-md-4">
-                                ${{ option.value.amount_to_pay }}
+                                <b-card-text>
+                                  Monto total
+                                </b-card-text>
+                                <b-card-sub-title>
+                                  <span style="font-weight: bold; font-size: 1.2em">{{ option.value.amount_to_pay | currency }}</span>
+                                </b-card-sub-title>
+                                <b-card-text>
+                                  Parcialidades de
+                                </b-card-text>
+                                <b-card-sub-title>
+                                  <span style="font-weight: bold; font-size: 1.2em">{{ option.value.amount_frequency | currency }}</span>
+                                </b-card-sub-title>
                               </div>
                             </b-card-sub-title>
                           </b-row>

@@ -3,7 +3,7 @@
     <b-card class="col-md-12 mb-2">
       <b-card-header>
         <b-card-title>
-          <h4>Tasa fija de %</h4>
+          <h4>Tasa fija del {{ interestRate }} %</h4>
         </b-card-title>
       </b-card-header>
       <b-card-body>
@@ -24,6 +24,14 @@
 <script>
 export default {
   name: 'NoteLoan',
+  data () {
+    return {
+      interestRate:0
+    }
+  },
+  mounted() {
+    this.interestRate = this.$store.getters.getEmployee.company.annual_interest_rate
+  },
 
 }
 </script>

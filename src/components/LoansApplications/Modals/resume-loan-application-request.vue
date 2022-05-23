@@ -10,8 +10,13 @@
           </b-card-header>
           <b-card-body>
             <b-card-text>
-              A NOMBRE DE {{ employee.name }} BANCO: {{ employee.bank.label }} CLABE INTERBANCARIA:
-              {{ employee.account_number }}
+              A NOMBRE DE {{ employee.name }}
+            </b-card-text>
+            <b-card-text>
+              BANCO: {{ employee.bank.label }}
+            </b-card-text>
+            <b-card-text>
+              CLABE INTERBANCARIA: {{ employee.account_number }}
             </b-card-text>
           </b-card-body>
           <b-card-body>
@@ -21,8 +26,8 @@
           </b-card-body>
           <b-card-body>
             <b-card-text>
-              Cubierto en {{ selectedTerm.text }} de {{ selectedTerm.amount_frequency }} con una tasa fija del %
-              {{ employee.company.annual_interest_rate }}
+              Cubierto en {{ selectedTerm.text }} de {{ selectedTerm.amount_frequency | currency }}
+              con una tasa fija del % {{ employee.company.annual_interest_rate }}
             </b-card-text>
           </b-card-body>
           <b-card-footer class="d-flex justify-content-end bg-w">
@@ -109,12 +114,14 @@ export default {
   color: #E5F1FE !important;
   margin-left: 10px !important;
 }
-.btn-cancel{
+
+.btn-cancel {
   border: solid 1px #00000029 !important;
   color: #1D1D1D !important;
   background-color: #FFF !important;
 }
-.bg-w{
+
+.bg-w {
   background-color: #FFFFFF !important;
 }
 </style>

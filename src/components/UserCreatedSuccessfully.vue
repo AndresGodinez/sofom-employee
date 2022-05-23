@@ -12,7 +12,7 @@
           Tu perfil ha sido creado correctamente.
         </p>
         <p class="normal-text pt-0 mt-0">
-          Recuerda que tu usuario es tu <span style="font-weight: bold">número de nómina.</span>
+          Recuerda que tu usuario es tu <span style="font-weight: bold">Correo electrónico o el número de nomina.</span>
         </p>
         <v-col cols="12" sm="12" class="d-flex justify-center">
           <v-btn color="primary" :to="{name:'welcomeEmployee'}" >Aceptar</v-btn>

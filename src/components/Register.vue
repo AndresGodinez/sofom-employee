@@ -91,7 +91,7 @@ export default {
     ],
     rfcRules: [
       v => !!v || 'RFC es requerido',
-      v => v.length === 10 || 'RFC debe tener 10 caracteres',
+      v => v.length === 13 || 'RFC debe tener 13 caracteres',
       v => /^[A-Za-z0-9]+$/.test(v) || 'RFC solo puede contener letras y numeros'
     ],
 
@@ -110,7 +110,7 @@ export default {
           await this.$store.dispatch('setEmployee', response.data.employee);
           await this.$router.push({name: 'areYou'})
         } else {
-          NotificationUtils.error(response.data.message)
+          await NotificationUtils.error(response.data.message)
         }
       } catch (e) {
         await NotificationUtils.error("Los datos no coinciden con ningún empleado");

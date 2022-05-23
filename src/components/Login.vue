@@ -24,7 +24,7 @@
                 v-model="username"
                 :rules="[v => !!v || 'Nombre se usuario requerido']"
                 required
-                placeholder="Correo"
+                placeholder="Correo electrónico o número de nomina"
                 class="back-white form-control-lg"
                 prepend-inner-icon="account_circle"
             ></v-text-field>
