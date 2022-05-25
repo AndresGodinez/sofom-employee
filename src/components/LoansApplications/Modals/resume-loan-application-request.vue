@@ -10,7 +10,7 @@
           </b-card-header>
           <b-card-body>
             <b-card-text>
-              A NOMBRE DE {{ employee.name }}
+              A NOMBRE DE: {{ employee.name }}
             </b-card-text>
             <b-card-text>
               BANCO: {{ employee.bank.label }}
@@ -21,13 +21,13 @@
           </b-card-body>
           <b-card-body>
             <b-card-text>
-              Por el monto de: {{ selectedTerm.amount_to_pay | currency }}
+              Por el monto de: {{ selectedTerm.total_loan_amount | currency }}
             </b-card-text>
           </b-card-body>
           <b-card-body>
             <b-card-text>
               Cubierto en {{ selectedTerm.text }} de {{ selectedTerm.amount_frequency | currency }}
-              con una tasa fija del % {{ employee.company.annual_interest_rate }}
+              con una tasa fija del {{ employee.company.annual_interest_rate }} %
             </b-card-text>
           </b-card-body>
           <b-card-footer class="d-flex justify-content-end bg-w">

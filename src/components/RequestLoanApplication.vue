@@ -11,7 +11,7 @@
                   <h6>Monto del préstamo</h6>
                 </b-card-sub-title>
                 <b-card-sub-title class="text-center">
-                   {{ requestedAmount | currency }}
+                  {{ requestedAmount | currency }}
                 </b-card-sub-title>
                 <b-card-text>
                   <b-form-input id="range" name="range" v-model="requestedAmount" type="range" min="0"
@@ -40,26 +40,39 @@
                     <b-form-radio :value="option.value" :key="option.text" class="">
                       <b-card class="col-md-12 pt-1">
                         <b-card-body class="col-md-12">
-                          <b-row class="col-md-12">
-                            <b-card-sub-title class="d-flex justify-content-between col-md-12">
-                              <div class="col-md-8">
+                          <b-row cols="12">
+                            <b-col cols="12">
+                              <b-card-sub-title class="text-center">
                                 {{ option.text }}
-                              </div>
-                              <div class="col-md-4">
-                                <b-card-text>
-                                  Monto total
-                                </b-card-text>
-                                <b-card-sub-title>
-                                  <span style="font-weight: bold; font-size: 1.2em">{{ option.value.amount_to_pay | currency }}</span>
-                                </b-card-sub-title>
-                                <b-card-text>
-                                  Parcialidades de
-                                </b-card-text>
-                                <b-card-sub-title>
-                                  <span style="font-weight: bold; font-size: 1.2em">{{ option.value.amount_frequency | currency }}</span>
-                                </b-card-sub-title>
-                              </div>
-                            </b-card-sub-title>
+                              </b-card-sub-title>
+                            </b-col>
+                          </b-row>
+                          <b-row>
+                            <b-col>
+                              <b-card-text>
+                                Monto total
+                              </b-card-text>
+                            </b-col>
+                            <b-col>
+                              <b-card-sub-title>
+                                  <span style="font-weight: bold;">
+                                    {{ option.value.amount_to_pay | currency }}</span>
+                              </b-card-sub-title>
+                            </b-col>
+                          </b-row>
+                          <b-row>
+                            <b-col>
+                              <b-card-text>
+                                Parcialidades
+                              </b-card-text>
+                            </b-col>
+                            <b-col>
+                              <b-card-sub-title>
+                                <span style="font-weight: bold;">
+                                  {{ option.value.amount_frequency | currency }}
+                                </span>
+                              </b-card-sub-title>
+                            </b-col>
                           </b-row>
                         </b-card-body>
                       </b-card>
