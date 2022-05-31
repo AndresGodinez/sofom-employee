@@ -194,10 +194,10 @@ export default {
         resizable: true,
         draggable: true,
         width: '90%',
-        height: '60%',
+        height: '70%',
       });
 
-    }
+    },
   },
   watch: {
     'requestedAmount': function () {
@@ -213,10 +213,8 @@ export default {
     if (token === '') {
       this.$router.push({
         name: 'login',
-
       });
     }
-
     this.axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
   },
 }

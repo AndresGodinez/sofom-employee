@@ -31,14 +31,15 @@
 
             <v-text-field
                 v-model="password"
-                type="password"
+                :type="customType"
                 :rules="[v => !!v || 'Contaseña requerida']"
                 required
                 prepend-inner-icon="lock_outline"
+                append-icon="remove_red_eye"
                 placeholder="Contraseña"
                 class="back-white form-control-lg mt-3"
             ></v-text-field>
-
+            <v-icon @click="showPassword= !showPassword">remove_red_eye</v-icon>
             <v-checkbox
                 v-model="remember_user"
                 label="Recordar mi usuario"
@@ -78,6 +79,8 @@ export default {
     username: 'xuhejen@mailinator.com',
     password: 'secret',
     remember_user: false,
+    showPassword: false,
+
     //Rules
     passwordRules: [
       v => !!v || 'Contraseña requerida',
@@ -112,7 +115,9 @@ export default {
           await this.$store.dispatch('setToken', response.data.token);
           await this.$store.dispatch('setUser', response.data.user);
           await this.$store.dispatch('setEmployee', response.data.employee);
-          await this.$router.push({name: 'requestLoanApplication'})
+          this.axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
+
+          await this.redirectEmployee();
         } else {
           NotificationUtils.close()
           await NotificationUtils.error(response.data.message)
@@ -133,6 +138,58 @@ export default {
     reset() {
       this.$refs.form.reset()
     },
+    async redirectEmployee() {
+      NotificationUtils.loading('Obteniendo información...');
+
+      const url = `${CONFIG.URL_API}/api/employees-loan-applications/list`;
+
+      try {
+        let employee = this.$store.getters.getEmployee;
+
+        let responseApprovedLoansApplications = await this.axios.get(url, {
+          params: {
+            'filter[status]': 'approved',
+            'filter[employee_id]': employee.id,
+          }
+        });
+
+
+        if (responseApprovedLoansApplications.data.data.length > 0) {
+          console.log('redirect approved loans applications');
+          NotificationUtils.close();
+
+          await this.$router.push({
+            name: 'myLoans',
+          });
+          return;
+
+        }
+
+        let responsePendingLoansApplications = await this.axios.get(url, {
+          params: {
+            'filter[status]': 'pending',
+            'filter[employee_id]': employee.id,
+          }
+        });
+
+        if (responsePendingLoansApplications.data.data.length > 0) {
+          console.log('redirect pending loans applications');
+
+          NotificationUtils.close();
+
+          await this.$router.push({
+            name: 'listPendingLoanApplications',
+          });
+          return;
+        }
+
+        await this.$router.push({name: 'requestLoanApplication'})
+
+      } catch (e) {
+        NotificationUtils.close();
+        await NotificationUtils.error("Ooops!", "Ocurrio un error al obtener los datos");
+      }
+    }
   },
 
   mounted() {
@@ -152,6 +209,11 @@ export default {
   components: {
     HeaderTop,
   },
+  computed: {
+    customType() {
+      return this.showPassword ? 'text' : 'password'
+    }
+  }
 }
 </script>
 <style scoped>

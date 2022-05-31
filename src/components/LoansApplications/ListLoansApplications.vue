@@ -40,19 +40,17 @@ export default {
       NotificationUtils.loading('Obteniendo información...');
 
       const url = `${CONFIG.URL_API}/api/employees-loan-applications/list`;
-      console.log({'prop': this.status});
-
-// TODO: fix hardcode employee id
 
       try {
+        let employee = this.$store.getters.getEmployee;
+
         let responseLoansApplications = await this.axios.get(url, {
           params: {
             'filter[status]': this.status,
-            'filter[employee_id]': 42,
+            'filter[employee_id]': employee.id,
           }
         });
 
-        console.log({responseLoansApplications});
         NotificationUtils.close();
 
         this.loansApplications = responseLoansApplications.data.data;

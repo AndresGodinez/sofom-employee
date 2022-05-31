@@ -30,7 +30,6 @@
               <v-text-field
                   v-model="pay_roll_number"
                   :rules="payrollNumberRules"
-                  :counter="10"
                   required
                   placeholder="Número de nómina"
               ></v-text-field>
@@ -43,6 +42,7 @@
               <v-text-field
                   v-model="rfc"
                   :rules="rfcRules"
+                  :counter="13"
                   required
                   placeholder="RFC"
               ></v-text-field>
@@ -80,7 +80,7 @@ export default {
     //Rules
     key_companyRules: [
       v => !!v || 'ID Empresa es requerido',
-      v => v.length > 2 || 'ID Empresa debe tener mas de 2 caracteres',
+      v => v.length >= 2 || 'ID Empresa debe tener mas de 2 caracteres',
       v => /^[0-9]+$/.test(v) || 'ID Empresa solo puede contener numeros'
     ],
     payrollNumberRules: [

@@ -7,8 +7,11 @@
             <v-icon>monetization_on</v-icon>
             <span class="custom-money-title">{{ loanApplication.total_loan_amount | currency }} MXN</span>
           </v-card-title>
-          <v-card-text class="py-0 my-0">
+          <v-card-text v-if="loanApplication.status === 'Pendiente'" class="py-0 my-0">
             A espera de aprobación
+          </v-card-text>
+          <v-card-text v-if="loanApplication.status === 'Aprovada'" class="py-0 my-0">
+            Solicitud aprovada el {{ loanApplication.approved_date  }}
           </v-card-text>
           <v-card-text class="py-0 my-0">
             Fecha de solicitud: {{ loanApplication.created_at }}
@@ -50,6 +53,10 @@ export default {
       type: Object,
       required: true
     }
+  },
+  mounted() {
+    console.log({'on mounted': this.loanApplication});
+
   },
   data() {
     return {
