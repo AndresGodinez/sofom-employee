@@ -20,6 +20,10 @@
                   :rules="passwordRules"
                   required
                   placeholder="Contraseña"
+                  append-icon="remove_red_eye"
+                  @click:append="showPassword= !showPassword"
+                  :type="customType"
+
               ></v-text-field>
             </v-col>
 
@@ -73,14 +77,16 @@ export default {
 
   data: () => ({
     valid: false,
-    password: 'CorrectPassword',
-    password_confirmation: 'CorrectPassword',
+    password: '',
+    password_confirmation: '',
     //Rules
     passwordRules: [
       v => !!v || 'Contraseña requerida',
       v => v.length >= 6 || 'La contraseña debe de tener minimo 6 caracteres',
     ],
     confirmPasswordRules: [v => !!v || "Password is required"],
+    showPassword: false,
+
 
   }),
 
@@ -131,6 +137,9 @@ export default {
       return () =>
           this.password === this.password_confirmation || "Las contraseñas deben de coincidir"
     },
+    customType() {
+      return this.showPassword ? 'text' : 'password'
+    }
   }
 }
 </script>

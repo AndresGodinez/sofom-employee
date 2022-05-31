@@ -14,7 +14,8 @@
                   {{ requestedAmount | currency }}
                 </b-card-sub-title>
                 <b-card-text>
-                  <b-form-input id="range" name="range" v-model="requestedAmount" type="range" min="0"
+                  <b-form-input id="range" name="range" v-model="requestedAmount" type="range" :min="minValue"
+                                step="100"
                                 :max="maxValue"></b-form-input>
                 </b-card-text>
                 <b-card-sub-title class="text-center">
@@ -152,6 +153,7 @@ export default {
   data() {
     return {
       requestedAmount: 0,
+      minValue: 0,
       maxValue: 0,
       selectedAvailableDeadline: '',
       options: [],
@@ -167,7 +169,9 @@ export default {
       console.log({responseMaxValue});
 
       this.maxValue = responseMaxValue.data.max_amount;
-      this.requestedAmount = Math.floor(this.maxValue / 2);
+      let middle = Math.floor(this.maxValue / 2);
+      this.minValue = middle;
+      this.requestedAmount = middle;
     },
     async getLoansAmount() {
       let url = `${CONFIG.URL_API}/api/employees/calculate-loan-amounts`;
@@ -189,6 +193,7 @@ export default {
         employee,
         user,
         selectedTerm: this.selectedAvailableDeadline,
+        requestedAmount: this.requestedAmount,
       }, {
         name: 'ResumeLoanApplicationRequest',
         resizable: true,

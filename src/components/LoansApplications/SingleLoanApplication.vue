@@ -11,7 +11,13 @@
             A espera de aprobación
           </v-card-text>
           <v-card-text v-if="loanApplication.status === 'Aprovada'" class="py-0 my-0">
-            Solicitud aprovada el {{ loanApplication.approved_date  }}
+            Solicitud aprovada el: {{ loanApplication.approved_date  }}
+          </v-card-text>
+          <v-card-text v-if="loanApplication.status === 'Rechazada'" class="py-0 my-0">
+            Solicitud rechazada el: {{ loanApplication.rejected_date  }}
+          </v-card-text>
+          <v-card-text v-if="loanApplication.status === 'Rechazada'" class="py-0 my-0">
+            Motivo: {{ loanApplication.rejected_reason  }}
           </v-card-text>
           <v-card-text class="py-0 my-0">
             Fecha de solicitud: {{ loanApplication.created_at }}
@@ -24,7 +30,7 @@
           </v-card-text>
           <v-card-text class="py-0 my-0">
             {{ loanApplication.quantity_loan }} pagos {{ loanApplication.frequency_payments }} de
-            {{ loanApplication.total_loan_amount / loanApplication.quantity_loan | currency }} MXN
+            {{ loanApplication.outstanding_balance_value / loanApplication.quantity_loan | currency }} MXN
           </v-card-text>
           <v-card-text class="py-0 my-0">
             Tasa de interes anual fija: {{ loanApplication.interest_rate }}%

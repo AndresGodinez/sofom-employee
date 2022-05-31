@@ -16,7 +16,6 @@
               v-model="valid"
               ref="form"
               lazy-validation
-
               @submit.prevent=""
           >
 
@@ -36,10 +35,10 @@
                 required
                 prepend-inner-icon="lock_outline"
                 append-icon="remove_red_eye"
+                @click:append="showPassword= !showPassword"
                 placeholder="Contraseña"
-                class="back-white form-control-lg mt-3"
+                class="back-white form-control-lg mt-6"
             ></v-text-field>
-            <v-icon @click="showPassword= !showPassword">remove_red_eye</v-icon>
             <v-checkbox
                 v-model="remember_user"
                 label="Recordar mi usuario"
@@ -76,8 +75,8 @@ export default {
 
   data: () => ({
     valid: false,
-    username: 'xuhejen@mailinator.com',
-    password: 'secret',
+    username: '',
+    password: '',
     remember_user: false,
     showPassword: false,
 
@@ -182,7 +181,7 @@ export default {
           });
           return;
         }
-
+        NotificationUtils.close();
         await this.$router.push({name: 'requestLoanApplication'})
 
       } catch (e) {

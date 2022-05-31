@@ -74,9 +74,9 @@ export default {
   name: 'Register',
   data: () => ({
     valid: false,
-    key_company: '21848392',
-    pay_roll_number: '492',
-    rfc: 'asdf123456',
+    key_company: '',
+    pay_roll_number: '',
+    rfc: '',
     //Rules
     key_companyRules: [
       v => !!v || 'ID Empresa es requerido',

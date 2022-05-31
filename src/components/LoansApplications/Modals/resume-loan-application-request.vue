@@ -21,7 +21,7 @@
           </b-card-body>
           <b-card-body>
             <b-card-text>
-              Por el monto de: {{ selectedTerm.total_loan_amount | currency }}
+              Por el monto de: {{ requestedAmount | currency }}
             </b-card-text>
           </b-card-body>
           <b-card-body>
@@ -66,29 +66,25 @@ export default {
       type: Object,
       required: true
     },
+    requestedAmount: {
+      type: String,
+      required: true
+    }
   },
   methods: {
     async requestLoanApplication() {
 
-
       try {
-        console.log('inside try');
         await NotificationUtils.loading();
 
         let url = `${CONFIG.URL_API}/api/loans-applications`;
 
-        console.log({url});
         let data = {
-          amount: this.selectedTerm.amount_to_pay,
+          amount: this.requestedAmount,
           selectedAvailableDeadline: this.selectedTerm,
         };
-        console.log({data});
-
 
         let responseRequestLoanApplication = await this.axios.post(url, data);
-
-        console.log({responseRequestLoanApplication});
-
 
         if (responseRequestLoanApplication.status === 201) {
           await NotificationUtils.close();
@@ -103,7 +99,7 @@ export default {
 
 
     }
-  }
+  },
 
 }
 </script>
