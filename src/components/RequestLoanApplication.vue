@@ -1,5 +1,7 @@
 <template>
   <div>
+    <HeaderTopUser></HeaderTopUser>
+
     <b-container>
       <b-row>
         <b-card>
@@ -131,6 +133,7 @@ import NoteLoan from './partials/note-loan.vue';
 import {CONFIG} from "@/Settings/config";
 import ResumeLoanApplicationRequest from "./LoansApplications/Modals/resume-loan-application-request.vue";
 import TextLoanApplication from './partials/loanApplications/title-request-loan-application.vue'
+import HeaderTopUser from './partials/header-top-user.vue'
 
 
 // Make BootstrapVue available throughout your project
@@ -211,7 +214,8 @@ export default {
   },
   components: {
     NoteLoan,
-    TextLoanApplication
+    TextLoanApplication,
+    HeaderTopUser
   },
   created() {
     let token = this.$store.getters.getToken;
